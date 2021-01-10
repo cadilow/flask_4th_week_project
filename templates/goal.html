@@ -1,0 +1,50 @@
+{% extends "base.html" %} 
+{% block wrapper %}
+<main class="container mt-3">
+  <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4">
+    <strong>
+      {% if goal == 'relocate' %} 🚜 
+      {% elif goal == 'work' %} 🏢 
+      {% elif goal == 'study' %} 🏫 
+      {% elif goal == 'for_programming' %} 🖥️ 
+      {% else %} ⛱ 
+      {% endif %}
+      <br />Преподаватели <br />
+      {{ goals[goal]|lower }}
+    </strong>
+  </h1>
+
+  <div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1 m-auto">
+      {% for i in teachers %} 
+      {% if goal in i['goals'] %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <img src="{{ i.picture }}" class="img-fluid" alt="" />
+            </div>
+            <div class="col-9">
+              <p class="float-right">
+                Рейтинг: {{ i.rating }} Ставка: {{ i.price }} / час
+              </p>
+              <h2 class="h4">{{ i.name }}</h2>
+              <p>{{ i.about }}</p>
+              <a
+                href="/profiles/{{ i.id }}/"
+                class="btn btn-outline-primary btn-sm mr-3 mb-2"
+              >
+                Показать информаци и расписание
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %} 
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include 'paste.html' %}
+</main>
+{% endblock %}

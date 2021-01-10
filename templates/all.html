@@ -1,0 +1,61 @@
+{% extends "base.html" %} 
+{% block wrapper %}
+<main class="container mt-3">
+  <h1 class="h1 text-center w-50 mx-auto mt-1 py-5 mb-4">
+    <strong>Все преподаватели</strong>
+  </h1>
+
+  <div class="row">
+    <div class="col-12 col-lg-10 offset-lg-1 m-auto">
+      <div class="card mb-4">
+        <div class="card-body align-right">
+          <p class="lead float-left d-inline-block mt-2 mb-0">
+            <strong>{{ teachers|length }} преподавателей в базе</strong>
+          </p>
+
+          <form action="/all/" method="POST" class="float-right d-inline-block">
+            <div class="form-inline">
+              {{ form.sorting(class_='custom-select my-1 mr-2') }}
+              <button type="submit" class="btn btn-primary my-1">
+                Сортировать
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      {% for i in sort_list %}
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-3">
+              <img
+                src="{{ teachers[i]['picture'] }}"
+                class="img-fluid"
+                alt=""
+              />
+            </div>
+            <div class="col-9">
+              <p class="float-right">
+                Рейтинг: {{ teachers[i]['rating'] }} Ставка: {{
+                teachers[i]['price'] }} / час
+              </p>
+              <h2 class="h4">{{ teachers[i]['name'] }}</h2>
+              <p>{{ teachers[i]['about']|truncate(400) }}</p>
+              <a
+                href="/profiles/{{ teachers[i]['id'] }}/"
+                class="btn btn-outline-primary btn-sm mr-3 mb-2"
+              >
+                Показать информаци и расписание
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {% include 'paste.html' %}
+</main>
+{% endblock %}

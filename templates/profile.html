@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% block wrapper %}
+<main class="container mt-3">
+  <div class="card my-4 mx-auto">
+    <div class="card-body m-2 m-md-4">
+      <article class="row">
+        <div class="col-5">
+          <img src="{{ content.picture }}" class="img-fluid" alt="" />
+        </div>
+        <div class="col-7">
+          <section class="teacher=info">
+            <h1 class="h2">{{ content.name }}</h1>
+            <p>
+              {% for i in content.goals %}
+              <span class="badge badge-secondary mr-2"> {{ goals[i] }} </span>
+              {% endfor %} Рейтинг: {{ content.rating }} Ставка: {{
+              content.price }} / час
+            </p>
+            <p>{{ content.about }}</p>
+          </section>
+
+          <section class="available">
+            <h4 class="mb-4 mt-5">Записаться на пробный урок</h4>
+
+            <h6 class="mt-4">Понедельник</h6>
+            {% if True in content.free.mon.values() %} {% for key, value in
+            content.free.mon.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/mon/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Вторник</h6>
+            {% if True in content.free.tue.values() %} {% for key, value in
+            content.free.tue.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/tue/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Среда</h6>
+            {% if True in content.free.wed.values() %} {% for key, value in
+            content.free.wed.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/wed/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Четверг</h6>
+            {% if True in content.free.thu.values() %} {% for key, value in
+            content.free.thu.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/thu/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Пятница</h6>
+            {% if True in content.free.fri.values() %} {% for key, value in
+            content.free.fri.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/fri/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Суббота</h6>
+            {% if True in content.free.sat.values() %} {% for key, value in
+            content.free.sat.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/sat/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+
+            <h6 class="mt-4">Воскресенье</h6>
+            {% if True in content.free.sun.values() %} {% for key, value in
+            content.free.sun.items() %} {% if value == True %}
+            <a
+              href="/booking/{{ content.id }}/sun/{{ key[0] }}{{ key[1] }}/"
+              class="btn btn-outline-success mr-2 mb-2"
+            >
+              {{ key }} свободно
+            </a>
+            {% endif %} {% endfor %} {% else %}
+            <p>Нет свободных уроков</p>
+            {% endif %}
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</main>
+{% endblock %}
